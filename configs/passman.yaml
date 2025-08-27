@@ -1,0 +1,10 @@
+mask: [ "*.tmpl", "*.html" ]
+dirs:
+  - /var/www/passman/static
+  - /var/www/passman/templates
+files:
+  - ref: /static/passman.js
+    location: /var/www/passman/static/passman.js
+  - ref: /static/passman.css
+    location: /var/www/passman/static/passman.css
+
