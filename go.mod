@@ -1,4 +1,4 @@
-module inject-hashes
+module github.com/highpower/inject-hashes
 
 go 1.24
 
