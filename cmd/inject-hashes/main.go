@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
-	"inject-hashes/internal/config"
-	"inject-hashes/pkg/injector"
+	"github.com/highpower/inject-hashes/internal/config"
+	"github.com/highpower/inject-hashes/pkg/injector"
 	"io"
 	"log"
 	"os"
