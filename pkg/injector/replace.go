@@ -42,6 +42,9 @@ func replaceIn(file string, rules []Rule) (string, error) {
 	if err := copyReplace(source, target, rules); err != nil {
 		return "", err
 	}
+	if err := target.Chmod(0x0644); err != nil {
+		return "", err
+	}
 	return target.Name(), nil
 }
 
