@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"gopkg.in/yaml.v3"
 	"io"
+	"log"
 	"os"
 	"path/filepath"
 )
@@ -145,10 +146,12 @@ func isMaskValid(mask []string) error {
 func isDirsValid(dirs []string) error {
 	for _, d := range dirs {
 		st, err := os.Stat(d)
-		if err != nil {
+		switch {
+		case os.IsNotExist(err):
+			log.Printf("%s does not exist, skipping", d)
+		case err != nil:
 			return err
-		}
-		if !st.IsDir() {
+		case !st.IsDir():
 			return fmt.Errorf("%s is not a directory", d)
 		}
 	}

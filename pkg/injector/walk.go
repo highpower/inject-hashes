@@ -18,7 +18,13 @@ func (w *walker) replace(path string) error {
 
 func (w *walker) walkDirs() error {
 	for _, dir := range w.dirs {
-		if err := filepath.Walk(dir, w.walkItem); err != nil {
+		err := filepath.Walk(dir, w.walkItem)
+		switch {
+		case os.IsNotExist(err):
+			log.Printf("%s", err.Error())
+			continue
+		case err != nil:
+			log.Printf("%s", err.Error())
 			return err
 		}
 	}
