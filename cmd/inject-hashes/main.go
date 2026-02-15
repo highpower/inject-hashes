@@ -16,8 +16,7 @@ type options struct {
 	version bool
 }
 
-//go:embed version.txt
-var version string
+const version = "0.1.4"
 
 func (o *options) Valid() bool {
 	return o.version == (o.config == "")
@@ -59,7 +58,8 @@ func createFiles(rules []injector.Rule) error {
 }
 
 func usage(writer io.Writer) {
-	_, _ = fmt.Fprintln(writer, "Usage: inject-hashes -config <config> [-verbose]")
+	_, _ = fmt.Fprintf(writer, "inject-hashes %s\n", version)
+	_, _ = fmt.Fprintf(writer, "Usage: inject-hashes -config <config> [-verbose] | -version\n")
 	flag.CommandLine.SetOutput(writer)
 	flag.CommandLine.PrintDefaults()
 }
