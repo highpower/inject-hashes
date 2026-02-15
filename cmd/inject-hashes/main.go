@@ -27,7 +27,7 @@ func run(c *config.Data) error {
 
 func createFiles(rules []injector.Rule) error {
 	for _, r := range rules {
-		if err := os.Rename(r.Location, r.NewLocation); err != nil {
+		if err := os.Link(r.Location, r.NewLocation); err != nil {
 			return err
 		}
 	}
